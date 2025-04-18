@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nemorphism calci</title>
+    <link rel="stylesheet" type="text/css"
+        href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<div id="Heading">
+  <h1>First Year Mini Project <br>
+  </h1>
+</div>
+
+<div id="logo"> 
+	<img src="C:.\Users\adity\OneDrive\Documents\project\sies_gst_logo.JPG" height="100" Width="300"> 
+</div> 
+<style>
+    body {
+        padding: 0;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        user-select: none;
+        background: #ecf0f3;
+    }
+
+    .container {
+        margin-left: 1.8em;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 13px 13px 20px #cbced1,
+            -13px -13px 20px #ffffff;
+    }
+
+    .content {
+        width: 100%;
+        margin-top: 1.7em;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .row button {
+        width: 60px;
+        height: 30px;
+        font-size: 16px;
+        border: none;
+        outline: none;
+        margin: 5px;
+        border-radius: 4px;
+        transition: .1s;
+        box-shadow: 5px 5px 8px #00000020,
+            -5px -5px 8px #ffff;
+    }
+
+    .row button:hover {
+        box-shadow: inset 5px 5px 8px rgba(16, 16, 16, .1),
+            inset -5px -5px 8px #fff;
+        background: #fff;
+    }
+
+    .display #screen {
+        margin-bottom: .5em;
+        width: auto;
+        height: 70px;
+        font-size: 35px;
+        outline: none;
+        border: none;
+        text-align: right;
+        padding-right: .5em;
+        background: #ecf0f3;
+        border-radius: 6px;
+        box-shadow: inset 8px 8px 8px #cbced1,
+            inset -8px -8px 8px #ffffff;
+    }
+
+    #eval {
+        background: #33ccff;
+        color: #fff;
+        box-shadow: inset 5px 5px 8px #66d9ff,
+            inset -5px -5px 8px #00ace6;
+    }
+
+    #eval:hover {
+        box-shadow: inset 5px 5px 8px #00ace6,
+            inset -5px -5px 8px #00ace6;
+    }
+
+    #ac {
+        background: #33cc33;
+        color: #fff;
+    }
+
+    #ac:hover {
+        box-shadow: inset 5px 5px 8px #2eb82e,
+            inset -5px -5px 8px #33cc33;
+    }
+
+    #ce {
+        background: #ff3399;
+        color: #fff;
+    }
+
+    #ce:hover {
+        box-shadow: inset 5px 5px 8px #e60073,
+            inset -5px -5px 8px #ff3399;
+    }
+    #logo{ 
+	position:fixed; 
+	top: 5px;; 
+	left: 5px;; 
+}  
+    #Heading{
+      position:fixed;
+      color: #49a997; 
+	top: 100px;; 
+	left: 725px; 
+  font-size: x-large;
+}
+    
+</div> 
+</style>
+
+<body>
+
+    <div class="container">
+        <div class="display">
+            <input id="screen" type="text" placeholder="0">
+        </div>
+
+        <div class="btns">
+            <div class="row">
+                <button id="ce" onclick="backspc()">CE</button>
+                <button onclick="fact()">x!</button>
+                <button class="btn">(</button>
+                <button class="btn">)</button>
+                <button class="btn">%</button>
+                <button id="ac" onclick="screen.value=''">AC</button>
+            </div>
+
+            <div class="row">
+                <button onclick="sin()">sin</button>
+                <button onclick="pi()">π</button>
+                <button class="btn">7</button>
+                <button class="btn">8</button>
+                <button class="btn">9</button>
+                <button class="btn">÷</button>
+            </div>
+
+            <div class="row">
+                <button onclick="cos()">cos</button>
+                <button onclick="log()">log</button>
+                <button class="btn">4</button>
+                <button class="btn">5</button>
+                <button class="btn">6</button>
+                <button class="btn">×</button>
+            </div>
+
+            <div class="row">
+                <button onclick="tan()">tan</button>
+                <button onclick="sqrt()">√</button>
+                <button class="btn">1</button>
+                <button class="btn">2</button>
+                <button class="btn">3</button>
+                <button class="btn">-</button>
+            </div>
+
+            <div class="row">
+                <button onclick="e()">e</button>
+                <button onclick="pow()">x <span style="position: relative; bottom: .4em; right: .1em;">y</span>
+                </button>
+                <button class="btn">0</button>
+                <button class="btn">.</button>
+                <button id="eval" onclick="screen.value=eval(screen.value)">=</button>
+                <button class="btn">+</button>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    var screen = document.querySelector('#screen');
+    var btn = document.querySelectorAll('.btn');
+
+    /*============ For getting the value of btn, Here we use for loop ============*/
+    for (item of btn) {
+        item.addEventListener('click', (e) => {
+            btntext = e.target.innerText;
+
+            if (btntext == '×') {
+                btntext = '*';
+            }
+
+            if (btntext == '÷') {
+                btntext = '/';
+            }
+            screen.value += btntext;
+        });
+    }
+
+    function sin() {
+        screen.value = Math.sin(screen.value);
+    }
+
+    function cos() {
+        screen.value = Math.cos(screen.value);
+    }
+
+    function tan() {
+        screen.value = Math.tan(screen.value);
+    }
+
+    function pow() {
+        screen.value = Math.pow(screen.value, 2);
+    }
+
+    function sqrt() {
+        screen.value = Math.sqrt(screen.value, 2);
+    }
+
+    function log() {
+        screen.value = Math.log(screen.value);
+    }
+
+    function pi() {
+        screen.value = 3.14159265359;
+    }
+
+    function e() {
+        screen.value = 2.71828182846;
+    }
+
+    function fact() {
+        var i, num, f;
+        f = 1
+        num = screen.value;
+        for (i = 1; i <= num; i++) {
+            f = f * i;
+        }
+
+        i = i - 1;
+
+        screen.value = f;
+    }
+
+    function backspc() {
+        screen.value = screen.value.substr(0, screen.value.length - 1);
+    }
+    
+
+    
+</script>
+</html>
+    <html>
+        <head>
+          <title>Unit Converter</title>
+          <style>
+            body {
+              margin: 0;
+              padding: 0;
+            }
+            .container {
+              margin: 20px auto;
+              max-width: 600px;
+              padding: 20px;
+              border: 1px solid #ccc;
+              border-radius: 5px;
+            }
+            label {
+              display: block;
+              margin-bottom: 10px;
+            }
+            input[type="number"],
+            select {
+              padding: 5px;
+              font-size: 16px;
+              border-radius: 5px;
+              border: 1px solid #ccc;
+              width: 100%;
+              box-sizing: border-box;
+            }
+            button[type="button"] {
+              background-color: #33cc33;
+              color: white;
+              padding: 8px 16px;
+              border: none;
+              border-radius: 5px;
+              cursor: pointer;
+            }
+            button[type="button"]:hover {
+              background-color: #3e8e41;
+            }
+            #result {
+              margin-top: 20px;
+              font-size: 18px;
+            }
+          </style>
+        </head>
+        <body>
+          <div class="container">
+            <form>
+              <label for="inputValue">Enter a value:</label>
+              <input type="number" id="inputValue" name="inputValue" required>
+      
+              <label for="fromUnit">From unit:</label>
+              <select id="fromUnit" name="fromUnit" required>
+                <option value="meters">Meters</option>
+                <option value="feet">Feet</option>
+                <option value="inches">Inches</option>
+              </select>
+      
+              <label for="toUnit">To unit:</label>
+              <select id="toUnit" name="toUnit" required>
+                <option value="meters">Meters</option>
+                <option value="feet">Feet</option>
+                <option value="inches">Inches</option>
+              </select>
+      
+              <button type="button" id="convertButton">Convert</button>
+            </form>
+      
+            <div id="result"></div>
+          </div>
+      
+          <script>
+            const inputValue = document.getElementById("inputValue");
+            const fromUnit = document.getElementById("fromUnit");
+            const toUnit = document.getElementById("toUnit");
+            const convertButton = document.getElementById("convertButton");
+            const result = document.getElementById("result");
+      
+            convertButton.addEventListener("click", function() {
+              const input = inputValue.value;
+              const from = fromUnit.value;
+              const to = toUnit.value;
+      
+              let conversionFactor = 1;
+      
+              if (from === "meters" && to === "feet") {
+                conversionFactor = 3.28084;
+              } else if (from === "meters" && to === "inches") {
+                conversionFactor = 39.3701;
+              } else if (from === "feet" && to === "meters") {
+                conversionFactor = 0.3048;
+              } else if (from === "feet" && to === "inches") {
+                conversionFactor = 12;
+              } else if (from === "inches" && to === "meters") {
+                conversionFactor = 0.0254;
+              } else if (from === "inches" && to === "feet") {
+                conversionFactor = 0.0833333;
+}
+const output = input * conversionFactor;
+
+    result.innerHTML = `${input} ${from} = ${output.toFixed(2)} ${to}`;
+  });
+</script>
+  </body>
+</html>
+
